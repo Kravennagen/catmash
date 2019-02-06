@@ -5,10 +5,10 @@ var express = require('express'),
     port = 3000,
     bodyParser = require('body-parser');
 
-app.use(bodyParser.json({limit: '50mb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
+app.use(bodyParser.json({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}))
     
-var routes = require('./Api/Routes/CatMashRoutes'); //importing route
+var routes = require('./Routes/CatMashRoutes'); //importing route
 routes(app); //register the route
     
 app.use(function(req, res) {
