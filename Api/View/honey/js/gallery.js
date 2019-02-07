@@ -6,16 +6,35 @@ Change image by cat's images.
 */
 
 
-$.ajax({
+jQuery.ajax({
+    "url": "http://192.168.233.155:3000/cats",
+    "type": "GET",
+    "dataType": "json",
+    "timeout": 10000,
+    "data": {}  
+}).done(function(data, textStatus, jqxhr) {
+    //Write code to be executed when the request SUCCEEDS.
+    console.log(data);
+}).fail(function(jqxhr, textStatus, errorThrown) {
+    console.log(jqxhr);
+    console.log(textStatus);
+    //Write code to be executed when the request FAILS.
+});
+
+/*$.ajax({
     type : "GET",
-    url :"../../../Routes/CatMashRoutes",
+    url :"http://192.168.233.155:3000/cats",
+    data: {
+        format: 'json'
+     },
+    dataType: 'jsonp',
     success: function(result){
         console.log(result);
     },
     error : function(e) {
         console.log("ERROR: ", e);
     }
-});	
+});	*/
 
 
 for(var i = 0; i < 100; i++){
