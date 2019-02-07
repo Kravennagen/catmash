@@ -49,7 +49,7 @@ exports.get_cats = function(req, res){
 			
 		});*/
 		
-		res.status(200).send({message: cats.images});
-		return cats.images;
+		res.status(200).send(cats.images);
+		
 	})
 }

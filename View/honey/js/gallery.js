@@ -1,4 +1,3 @@
-import {getCats} from "../../../Models/CatMashModel";
 /*
 Loop for the gallery.
 Change < with the number of cats images.
@@ -6,23 +5,18 @@ Change id by cat's id.
 Change image by cat's images.
 */
 
-console.log("premier test");
 
+$.ajax({
+    type : "GET",
+    url :"../../../Routes/CatMashRoutes.js",
+    success: function(result){
+        console.log(result);
+    },
+    error : function(e) {
+        console.log("ERROR: ", e);
+    }
+});	
 
-
-
-
-/*var state = {
-    cats : {}
-};
-
-getCats().then((cats) => {
-    state({
-        cats : cats
-    });
-}).catch((err) => alert(err + ""));
-console.log("test");
-console.log(state.cats);*/
 
 for(var i = 0; i < 100; i++){
     $('#loop_gallery').append($('<div>', {id: 'a'+i, 'class': 'gallery_item'}));
