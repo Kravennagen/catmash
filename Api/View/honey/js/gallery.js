@@ -8,7 +8,7 @@ Change image by cat's images.
 
 $.ajax({
     type : "GET",
-    url :"../../../Routes/CatMashRoutes.js",
+    url :"../../../Routes/CatMashRoutes",
     success: function(result){
         console.log(result);
     },
