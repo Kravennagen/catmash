@@ -6,20 +6,42 @@ Change image by cat's images.
 */
 
 
-jQuery.ajax({
+$.ajax({
     "url": "http://192.168.233.155:3000/cats",
     "type": "GET",
     "dataType": "json",
-    "timeout": 10000,
-    "data": {}  
-}).done(function(data, textStatus, jqxhr) {
+}).done(function(resultat, textStatus, jqxhr) {
     //Write code to be executed when the request SUCCEEDS.
-    console.log(data);
-}).fail(function(jqxhr, textStatus, errorThrown) {
+    console.log(resultat);
+}).fail(function(resultat, jqxhr, textStatus, errorThrown) {
+    console.log(resultat);
     console.log(jqxhr);
     console.log(textStatus);
+    console.log(errorThrown);
     //Write code to be executed when the request FAILS.
 });
+
+/*$.ajax({
+    url : 'http://192.168.233.155:3000/cats',
+    type : 'GET',
+    dataType : 'html',
+    success : function(resultat, status){
+        console.log(resultat);
+        console.log(status);
+    },
+
+    error : function(resultat, status, erreur){
+        console.log(resultat);
+        console.log(status);
+        console.log(erreur);
+    },
+
+    complete : function(resultat, status){
+        console.log(resultat);
+        console.log(status);
+    }
+
+ });*/
 
 /*$.ajax({
     type : "GET",

@@ -19,6 +19,6 @@ exports.get_cats = function(req, res){
 		var cats = JSON.parse(body);
 		var images = cats.images;
 		console.log(images);
-		res.status(200).send(images);		
+		res.status(200).json(images);	
 	})
 }
