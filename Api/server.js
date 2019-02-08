@@ -1,5 +1,4 @@
 require('dotenv').config();
-var cors = require('cors')
 var express = require('express'),
     app = express(),
     port = 3000,
@@ -14,7 +13,6 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
     
-//app.use(cors)
 app.use(allowCrossDomain)
 app.use(bodyParser.json({extended: true}))
 app.use(bodyParser.urlencoded({extended: true}))
