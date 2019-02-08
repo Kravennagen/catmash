@@ -1,10 +1,21 @@
 require('dotenv').config();
-
+var cors = require('cors')
 var express = require('express'),
     app = express(),
     port = 3000,
     bodyParser = require('body-parser');
 
+
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    
+    next();
+}
+    
+//app.use(cors)
+app.use(allowCrossDomain)
 app.use(bodyParser.json({extended: true}))
 app.use(bodyParser.urlencoded({extended: true}))
     
