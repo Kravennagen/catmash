@@ -2,7 +2,7 @@ var cat1;
 var cat2;
 
 $.ajax({
-    url : 'http://192.168.233.155:3000/cat',
+    url : 'http://192.168.233.156:3000/cat',
     type : 'GET',
     dataType : 'html',
     async : false,
@@ -20,7 +20,7 @@ $.ajax({
 });
 
 $.ajax({
-    url : 'http://192.168.233.155:3000/cat',
+    url : 'http://192.168.233.156:3000/cat',
     type : 'GET',
     dataType : 'html',
     async : false,

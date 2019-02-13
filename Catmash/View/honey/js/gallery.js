@@ -6,7 +6,7 @@ Loop for the gallery.
 var cats;
 var i = 0;
 $.ajax({
-    url : 'http://192.168.233.155:3000/cats',
+    url : 'http://192.168.233.156:3000/cats',
     type : 'GET',
     dataType : 'html',
     async : false,
