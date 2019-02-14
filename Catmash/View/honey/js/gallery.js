@@ -1,6 +1,6 @@
 /*
 CORS is handle by apache2
-Ajax get all cats from server
+Get cats from firebase realtime database
 Loop for the gallery.
 */
 var config = {
@@ -12,7 +12,6 @@ var config = {
     messagingSenderId: "582397968867"
   };
 firebase.initializeApp(config);
-var cats_firebase;
 var nb_total;
 var cats_id= [];
 var cats_url= [];
@@ -32,7 +31,7 @@ ref.on("value", function(snapshot){
         while(i < nb_total){
             $('#loop_gallery').append($('<div>', {id: "1"+cats_id[i], 'class': 'gallery_item'}));
             $('#1'+cats_id[i]).append($('<div>', {id: "2"+cats_id[i], 'class': 'h_gallery_item'}));
-            $('#2'+cats_id[i]).append($('<img/>', {id: "3"+cats_id[i], 'src':cats_url[i]}));
+            $('#2'+cats_id[i]).append($('<img/>', {id: "3"+cats_id[i], 'src':cats_url[i], 'alt':cats_id[i]}));
             $('#3'+cats_id[i]).append($('<div>', {id: "4"+cats_id[i], 'class':'hover'}));
             $('#4'+cats_id[i]).append($('<a>', {id: "5"+cats_id[i], 'class':'light', 'href':'img/story/cat1.jpg'}));
             $('#5'+cats_id[i]).append($('<i/>', {id: "6"+cats_id[i], 'class':'fa fa-expand'}));
