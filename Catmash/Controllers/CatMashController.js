@@ -1,6 +1,13 @@
 'use strict';
 
 var request = require('request');
+var firebase = require('firebase-admin');
+var serviceAccount = require('/home/kraven/Documents/Catmash/catmash/Catmash/serviceAccount.json');
+
+firebase.initializeApp({
+	credential: firebase.credential.cert(serviceAccount),
+	databaseURL: 'https://catmash-4c534.firebaseio.com/'
+  });
 
 exports.get_cats = function(req, res){
 	
@@ -17,6 +24,17 @@ exports.get_cats = function(req, res){
 		}
 		var cats = JSON.parse(body);
 		var images = cats.images;
+		for(var i=0; i < images.length; i++){
+			firebase.database().ref('cats').child(i).set({
+				id_cat: images[i].id,
+				url: images[i].url
+			  });
+			
+		}
+		firebase.database().ref('nb_cats').set({
+			nb_total: images.length
+		});
+		
 		res.status(200).json(images);
 	});
 }
@@ -39,12 +57,8 @@ exports.get_cat = function(req, res){
 		}
 		var cats = JSON.parse(body);
 		var n = getRandomInt(101);
-		//console.log(n);
 		var images = cats.images;
-		//console.log(images);
 		var count = images.length;
-		//console.log(count);
-		//console.log(images[43]);
 
 		res.status(200).json(images[n]);
 	});
