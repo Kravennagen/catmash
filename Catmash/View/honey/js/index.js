@@ -1,53 +1,73 @@
-var cat1;
-var cat2;
+/*
+    Get cats from firebase
+    random number to choose between cats
+*/
 
-$.ajax({
-    url : 'http://192.168.233.156:3000/cat',
-    type : 'GET',
-    dataType : 'html',
-    async : false,
-    success : function(response, status){
-        console.log("success");
-    },
 
-    error : function(response, status, erreur){
-        console.log("error");
-    },
-    complete : function(response){
-        //console.log(response.responseText);
-        cat1 = response.responseText;
-    }
+firebase.initializeApp(config);
+
+var ref = firebase.database().ref("cats");
+var ref2 = firebase.database().ref("nb_cats");
+var nb_total;
+var cats= [];
+ref2.on("value", function(snapshot){
+    snapshot.forEach(function(child){
+        nb_total = child.val();
+    });
+    const randomIndex = Math.floor(Math.random() * nb_total);
+    const randomIndex2 = Math.floor(Math.random() * nb_total);
+    ref.on("value", function(snapshot2){
+        snapshot2.forEach(function(child){
+            cats.push(child.val());
+        });
+        document.getElementById("cat1").src = cats[randomIndex].url;
+        document.getElementById("cat2").src = cats[randomIndex2].url;
+        document.getElementById("cat1").alt = cats[randomIndex].id_cat;
+        document.getElementById("cat2").alt = cats[randomIndex2].id_cat;
+    })
 });
 
-$.ajax({
-    url : 'http://192.168.233.156:3000/cat',
-    type : 'GET',
-    dataType : 'html',
-    async : false,
-    success : function(response, status){
-        console.log("success");
-    },
+function cat_one_choosen(){
+    var id;
+    id = document.getElementById("cat1").alt;
+    var ref3 = firebase.database().ref("cats").child(id);
+    ref3.once("value").then(function(snapshot){
+        var score = snapshot.val().score;
+        sc = score + 1;
+        ref3.update({
+            score : sc
+        },
+        function(error){
+            if(error){
+                console.log("error");
+            }else{
+                console.log("success");
+            }
+        }
+        );
+    })
+    location.reload();
 
-    error : function(response, status, erreur){
-        console.log("error");
-    },
-    complete : function(response){
-        //console.log(response.responseText);
-        cat2 = response.responseText;
-    }
-});
+}
 
-c1 = JSON.parse(cat1);
-c2 = JSON.parse(cat2);
-
-document.getElementById("cat1").src = c1.url;
-document.getElementById("cat2").src = c2.url;
-document.getElementById("cat1").alt = c1.id;
-document.getElementById("cat2").alt = c2.id;
-console.log(c1.id);
-console.log(c2.id);
-
-function choice_is_made(){
-    console.log("in it");
+function cat_two_choosen(){
+    var id;
+    id = document.getElementById("cat2").alt;
+    var ref3 = firebase.database().ref("cats").child(id);
+    ref3.once("value").then(function(snapshot){
+        var score = snapshot.val().score;
+        sc = score + 1;
+        ref3.update({
+            score : sc
+        },
+        function(error){
+            if(error){
+                console.log("error");
+            }else{
+                console.log("success");
+            }
+        }
+        );
+    })
     location.reload();
 }
