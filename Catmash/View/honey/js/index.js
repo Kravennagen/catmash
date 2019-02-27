@@ -3,14 +3,7 @@
     random number to choose between cats
 */
 
-var config = {
-    apiKey: "AIzaSyAPZ36nT3IvIzeY4XlsO06yBOBpDrQI8Co",
-    authDomain: "catmash-4c534.firebaseapp.com",
-    databaseURL: "https://catmash-4c534.firebaseio.com",
-    projectId: "catmash-4c534",
-    storageBucket: "catmash-4c534.appspot.com",
-    messagingSenderId: "582397968867"
-  };
+
 firebase.initializeApp(config);
 
 var ref = firebase.database().ref("cats");
@@ -34,7 +27,47 @@ ref2.on("value", function(snapshot){
     })
 });
 
-function choice_is_made(){
-    console.log("in it");
+function cat_one_choosen(){
+    var id;
+    id = document.getElementById("cat1").alt;
+    var ref3 = firebase.database().ref("cats").child(id);
+    ref3.once("value").then(function(snapshot){
+        var score = snapshot.val().score;
+        sc = score + 1;
+        ref3.update({
+            score : sc
+        },
+        function(error){
+            if(error){
+                console.log("error");
+            }else{
+                console.log("success");
+            }
+        }
+        );
+    })
+    location.reload();
+
+}
+
+function cat_two_choosen(){
+    var id;
+    id = document.getElementById("cat2").alt;
+    var ref3 = firebase.database().ref("cats").child(id);
+    ref3.once("value").then(function(snapshot){
+        var score = snapshot.val().score;
+        sc = score + 1;
+        ref3.update({
+            score : sc
+        },
+        function(error){
+            if(error){
+                console.log("error");
+            }else{
+                console.log("success");
+            }
+        }
+        );
+    })
     location.reload();
 }

@@ -2,7 +2,7 @@
 
 var request = require('request');
 var firebase = require('firebase-admin');
-var serviceAccount = require('/home/kraven/Documents/Catmash/catmash/Catmash/serviceAccount.json');
+var serviceAccount = require('/home/kraven/Documents/catmash/catmash/Catmash/serviceAccount.json');
 
 firebase.initializeApp({
 	credential: firebase.credential.cert(serviceAccount),
@@ -10,7 +10,6 @@ firebase.initializeApp({
   });
 
 exports.get_cats = function(req, res){
-	
 	const getCats = {
 		uri: "https://latelier.co/data/cats.json",
 		headers: {
@@ -25,16 +24,16 @@ exports.get_cats = function(req, res){
 		var cats = JSON.parse(body);
 		var images = cats.images;
 		for(var i=0; i < images.length; i++){
-			firebase.database().ref('cats').child(i).set({
+			firebase.database().ref('cats').child(images[i].id).set({
 				id_cat: images[i].id,
-				url: images[i].url
+				url: images[i].url,
+				score: 0
 			  });
 			
 		}
 		firebase.database().ref('nb_cats').set({
 			nb_total: images.length
 		});
-		
 		res.status(200).json(images);
 	});
 }

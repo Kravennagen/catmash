@@ -3,14 +3,7 @@ CORS is handle by apache2
 Get cats from firebase realtime database
 Loop for the gallery.
 */
-var config = {
-    apiKey: "AIzaSyAPZ36nT3IvIzeY4XlsO06yBOBpDrQI8Co",
-    authDomain: "catmash-4c534.firebaseapp.com",
-    databaseURL: "https://catmash-4c534.firebaseio.com",
-    projectId: "catmash-4c534",
-    storageBucket: "catmash-4c534.appspot.com",
-    messagingSenderId: "582397968867"
-  };
+
 firebase.initializeApp(config);
 var nb_total;
 var cats_id= [];
