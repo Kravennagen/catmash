@@ -25,11 +25,12 @@ ref.on("value", function(snapshot){
         var j = 0;
         while(i < nb_total){
             
-            $('#loop_gallery').append($('<div>', {id: "1"+cats_id[i], 'class': 'gallery_item'}));
+            $('#loop_gallery').append($('<div>', {id: "1"+cats_id[i], 'class': 'gallery_item container'}));
             $('#1'+cats_id[i]).append($('<div>', {id: "2"+cats_id[i], 'class': 'h_gallery_item'}));
             $('#2'+cats_id[i]).append($('<img/>', {id: "3"+cats_id[i], 'src':cats_url[i], 'alt':cats_id[i]}));
-            $('#3'+cats_id[i]).append($('<div>', {id: "4"+cats_id[i], 'class':'hover'}));
-            $('#4'+cats_id[i]).append($('<p/>', {id: "5"+cats_id[i]}));
+            $('#1'+cats_id[i]).append($('<div>', {id: "4"+cats_id[i], 'class':'hover custom_div'}));
+            $('#4'+cats_id[i]).append($('<span/>', {id: "5"+cats_id[i]}));
+            $('#5'+cats_id[i]).text(cats_score[i]);
             i++;
         }
 
