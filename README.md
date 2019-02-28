@@ -11,3 +11,5 @@ Contact affiche mon contact <br>
 
 Firebase pour récupérer les données au cas où l'url saute. Comme ça elles restent stockées et mes données sont sauvées.<br>
 Passe par firebase pour récupérer et modifier les données.<br>
+<br>
+Reset data est pour faire appel à l'api catmash lorsque le serveur node est lancé. Il reset les data firebase.
